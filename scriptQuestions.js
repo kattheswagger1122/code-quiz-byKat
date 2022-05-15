@@ -1,5 +1,5 @@
 // creating an array and passing the number, questions, options, and answers
-let questions = [
+var question = [
     {
     numb: 1,
     question: "What is Katrina's Favorite Bread?",
@@ -7,7 +7,8 @@ let questions = [
     options: [
       "Croissant",
       "Sourdough",
-      "Pineapple Bread"
+      "Pineapple Bread",
+      "Pita"
     ]
   },
     {
@@ -17,7 +18,8 @@ let questions = [
     options: [
       "COS",
       "Theory",
-      "Oak+Fort"
+      "Oak+Fort",
+      "Uniqlo"
     ]
   },
     {
@@ -27,6 +29,7 @@ let questions = [
     options: [
       "piano",
       "violin",
+      "recorder",
       "flute"
     ]
   },

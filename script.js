@@ -1,194 +1,198 @@
-//selecting all required elements
-const start_btn = document.querySelector(".start_btn button");
-const info_box = document.querySelector(".info_box");
-const exit_btn = info_box.querySelector(".buttons .quit");
-const continue_btn = info_box.querySelector(".buttons .restart");
-const quiz_box = document.querySelector(".quiz_box");
-const result_box = document.querySelector(".result_box");
-const option_list = document.querySelector(".option_list");
-const time_line = document.querySelector("header .time_line");
-const timeText = document.querySelector(".timer .time_left_txt");
-const timeCount = document.querySelector(".timer .timer_sec");
-// if startQuiz button clicked
-start_btn.onclick = ()=>{
-    info_box.classList.add("activeInfo"); //show info box
-}
-// if exitQuiz button clicked
-exit_btn.onclick = ()=>{
-    info_box.classList.remove("activeInfo"); //hide info box
-}
-// if continueQuiz button clicked
-continue_btn.onclick = ()=>{
-    info_box.classList.remove("activeInfo"); //hide info box
-    quiz_box.classList.add("activeQuiz"); //show quiz box
-    showQuetions(0); //calling showQestions function
-    queCounter(1); //passing 1 parameter to queCounter
-    startTimer(15); //calling startTimer function
-    startTimerLine(0); //calling startTimerLine function
-}
-let timeValue =  15;
-let que_count = 0;
-let que_numb = 1;
-let userScore = 0;
-let counter;
-let counterLine;
-let widthValue = 0;
-const restart_quiz = result_box.querySelector(".buttons .restart");
-const quit_quiz = result_box.querySelector(".buttons .quit");
-// if restartQuiz button clicked
-restart_quiz.onclick = ()=>{
-    quiz_box.classList.add("activeQuiz"); //show quiz box
-    result_box.classList.remove("activeResult"); //hide result box
-    timeValue = 15; 
-    que_count = 0;
-    que_numb = 1;
-    userScore = 0;
-    widthValue = 0;
-    showQuetions(que_count); //calling showQestions function
-    queCounter(que_numb); //passing que_numb value to queCounter
-    clearInterval(counter); //clear counter
-    clearInterval(counterLine); //clear counterLine
-    startTimer(timeValue); //calling startTimer function
-    startTimerLine(widthValue); //calling startTimerLine function
-    timeText.textContent = "Time Left"; //change the text of timeText to Time Left
-    next_btn.classList.remove("show"); //hide the next button
-}
-// if quitQuiz button clicked
-quit_quiz.onclick = ()=>{
-    window.location.reload(); //reload the current window
-}
-const next_btn = document.querySelector("footer .next_btn");
-const bottom_ques_counter = document.querySelector("footer .total_que");
-// if Next Que button clicked
-next_btn.onclick = ()=>{
-    if(que_count < questions.length - 1){ //if question count is less than total question length
-        que_count++; //increment the que_count value
-        que_numb++; //increment the que_numb value
-        showQuetions(que_count); //calling showQestions function
-        queCounter(que_numb); //passing que_numb value to queCounter
-        clearInterval(counter); //clear counter
-        clearInterval(counterLine); //clear counterLine
-        startTimer(timeValue); //calling startTimer function
-        startTimerLine(widthValue); //calling startTimerLine function
-        timeText.textContent = "Time Left"; //change the timeText to Time Left
-        next_btn.classList.remove("show"); //hide the next button
-    }else{
-        clearInterval(counter); //clear counter
-        clearInterval(counterLine); //clear counterLine
-        showResult(); //calling showResult function
+// Global variables, questions are stored in questions.js
+var beginQuiz = document.querySelector("#beginBtn");
+var leaderBtn = document.querySelector("#leaderBtn");
+var timerDisplay = document.querySelector(".timer");
+var gameCard = document.querySelector("#gameCard");
+var question = document.querySelector("#question");
+var mcA = document.querySelector("#mcA");
+var mcB = document.querySelector("#mcB");
+var mcC = document.querySelector("#mcC");
+var mcD = document.querySelector("#mcD");
+var answer = document.querySelector("#answer");
+var feedback = document.querySelector("#feedback1");
+var card = document.querySelector("#multipleChoice");
+var inputForm = document.querySelector("#inputForm");
+var scoreCard = document.querySelector("#scoreCard");
+var scoreBtn = document.querySelector("#scoreBtn");
+var initialsBox = document.querySelector("#initialsBox");
+var submitBtn = document.querySelector("#submitBtn");
+var backBtn = document.querySelector("#backBtn");
+var clearBtn = document.querySelector("#clearBtn");
+var start = document.querySelector(".start");
+
+var timeLeft = questionBank.length * 15;
+var q = 0;
+var s = 0;
+var score = 0;
+var scoreList = [];
+var timeInterval;
+
+getScore();
+// -----------------------------------------------------------------------------
+
+// Running the timer for the quiz
+function timer() {
+  timeInterval = setInterval(function () {
+    timeLeft--;
+    timerDisplay.textContent = "TIMER: " + timeLeft;
+
+    if (timeLeft === 0 || q >= questionBank.length) {
+      clearInterval(timeInterval);
+      gameOver();
     }
+  }, 1000);
 }
-// getting questions and options from array
-function showQuetions(index){
-    const que_text = document.querySelector(".que_text");
-    //creating a new span and div tag for question and option and passing the value using array index
-    let que_tag = '<span>'+ questions[index].numb + ". " + questions[index].question +'</span>';
-    let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
-    + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
-    que_text.innerHTML = que_tag; //adding new span tag inside que_tag
-    option_list.innerHTML = option_tag; //adding new div tag inside option_tag
-    
-    const option = option_list.querySelectorAll(".option");
-    // set onclick attribute to all available options
-    for(i=0; i < option.length; i++){
-        option[i].setAttribute("onclick", "optionSelected(this)");
-    }
+// -----------------------------------------------------------------------------
+
+// Displaying questions & answers from questionBank
+function displayQA() {
+  if (q < questionBank.length) {
+    question.textContent = questionBank[q].question;
+    mcA.textContent = questionBank[q].selection[0];
+    mcB.textContent = questionBank[q].selection[1];
+    mcC.textContent = questionBank[q].selection[2];
+    mcD.textContent = questionBank[q].selection[3];
+  } else {
+    gameOver();
+  }
 }
-// creating the new div tags which for icons
-let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
-let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
-//if user clicked on option
-function optionSelected(answer){
-    clearInterval(counter); //clear counter
-    clearInterval(counterLine); //clear counterLine
-    let userAns = answer.textContent; //getting user selected option
-    let correcAns = questions[que_count].answer; //getting correct answer from array
-    const allOptions = option_list.children.length; //getting all option items
-    
-    if(userAns == correcAns){ //if user selected option is equal to array's correct answer
-        userScore += 1; //upgrading score value with 1
-        answer.classList.add("correct"); //adding green color to correct selected option
-        answer.insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to correct selected option
-        console.log("Correct Answer");
-        console.log("Your correct answers = " + userScore);
-    }else{
-        answer.classList.add("incorrect"); //adding red color to correct selected option
-        answer.insertAdjacentHTML("beforeend", crossIconTag); //adding cross icon to correct selected option
-        console.log("Wrong Answer");
-        for(i=0; i < allOptions; i++){
-            if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer 
-                option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
-                option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
-                console.log("Auto selected correct answer.");
-            }
-        }
+// -----------------------------------------------------------------------------
+
+// Informing player if chosen answer is right or wrong
+function compareAnswer(event) {
+  if (q >= questionBank.length) {
+    gameOver();
+    clearInterval(timeInterval);
+  } else {
+    if (event === questionBank[q].answer) {
+      feedback1.textContent = "You are correct!";
+    } else {
+      timeLeft -= 10;
+      feedback1.textContent = "You are Wrong!";
     }
-    for(i=0; i < allOptions; i++){
-        option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
-    }
-    next_btn.classList.add("show"); //show the next button if user selected any option
+    score = timeLeft;
+    q++;
+    displayQA();
+  }
 }
-function showResult(){
-    info_box.classList.remove("activeInfo"); //hide info box
-    quiz_box.classList.remove("activeQuiz"); //hide quiz box
-    result_box.classList.add("activeResult"); //show result box
-    const scoreText = result_box.querySelector(".score_text");
-    if (userScore > 3){ // if user scored more than 3
-        //creating a new span tag and passing the user score number and total question number
-        let scoreTag = '<span>and congrats! , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;  //adding new span tag inside score_Text
-    }
-    else if(userScore > 1){ // if user scored more than 1
-        let scoreTag = '<span>and nice , You got <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;
-    }
-    else{ // if user scored less than 1
-        let scoreTag = '<span>and sorry , You got only <p>'+ userScore +'</p> out of <p>'+ questions.length +'</p></span>';
-        scoreText.innerHTML = scoreTag;
-    }
+// -----------------------------------------------------------------------------
+
+// Getting scores from local storage
+function getScore() {
+  var storedScore = JSON.parse(localStorage.getItem("highScore"));
+  if (storedScore !== null) {
+    scoreList = storedScore;
+  }
 }
-function startTimer(time){
-    counter = setInterval(timer, 1000);
-    function timer(){
-        timeCount.textContent = time; //changing the value of timeCount with time value
-        time--; //decrement the time value
-        if(time < 9){ //if timer is less than 9
-            let addZero = timeCount.textContent; 
-            timeCount.textContent = "0" + addZero; //add a 0 before time value
-        }
-        if(time < 0){ //if timer is less than 0
-            clearInterval(counter); //clear counter
-            timeText.textContent = "Time Off"; //change the time text to time off
-            const allOptions = option_list.children.length; //getting all option items
-            let correcAns = questions[que_count].answer; //getting correct answer from array
-            for(i=0; i < allOptions; i++){
-                if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer
-                    option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
-                    option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
-                    console.log("Time Off: Auto selected correct answer.");
-                }
-            }
-            for(i=0; i < allOptions; i++){
-                option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
-            }
-            next_btn.classList.add("show"); //show the next button if user selected any option
-        }
-    }
+// -----------------------------------------------------------------------------
+
+// Saving the scores to local storage
+function saveScore() {
+  localStorage.setItem("highScore", JSON.stringify(scoreList));
 }
-function startTimerLine(time){
-    counterLine = setInterval(timer, 29);
-    function timer(){
-        time += 1; //upgrading time value with 1
-        time_line.style.width = time + "px"; //increasing width of time_line with px by time value
-        if(time > 549){ //if time value is greater than 549
-            clearInterval(counterLine); //clear counterLine
-        }
-    }
+// -----------------------------------------------------------------------------
+
+// Displaying & hiding page items based on Game Over
+function gameOver() {
+  scoreBtn.innerHTML = score;
+  scoreBtn.style.display = "inline-block";
+  gameCard.classList.add("hide");
+  inputForm.classList.remove("hide");
+  timerDisplay.classList.add("hide");
+  leaderBtn.classList.add("hide");
+  leaderBoard();
 }
-function queCounter(index){
-    //creating a new span tag and passing the question number and total question
-    let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
-    bottom_ques_counter.innerHTML = totalQueCounTag;  //adding new span tag inside bottom_ques_counter
+// -----------------------------------------------------------------------------
+
+// Keeping track of top 10 leaders from local storage w/ loop
+function leaderBoard() {
+  removeFromLeaderBoard();
+  addToLeaderBoard();
+  scoreList.sort((a, b) => {
+    return b.score - a.score;
+  });
+  //only render the top 4 scores.
+  topTen = scoreList.slice(0, 10);
+
+  for (var i = 0; i < topTen.length; i++) {
+    var player = topTen[i].player;
+    var score = topTen[i].score;
+
+    var newDiv = document.createElement("div");
+    leaderBoardDiv.appendChild(newDiv);
+
+    var newLabel = document.createElement("label");
+    newLabel.textContent = player + " - " + score;
+    newDiv.appendChild(newLabel);
+  }
 }
+// -----------------------------------------------------------------------------
+
+// Adding player initials to leader board
+function addToLeaderBoard() {
+  leaderBoardDiv = document.createElement("div");
+  leaderBoardDiv.setAttribute("id", "playerInitials");
+  document.getElementById("leaderBoard").appendChild(leaderBoardDiv);
+}
+// -----------------------------------------------------------------------------
+
+// Removing player initials from leader board
+function removeFromLeaderBoard() {
+  var removeScores = document.getElementById("playerInitials");
+  if (removeScores !== null) {
+    removeScores.remove();
+  } else {
+  }
+}
+// -----------------------------------------------------------------------------
+
+// Event listeners
+beginQuiz.addEventListener("click", function (event) {
+  timer();
+  displayQA();
+  start.classList.add("hide");
+  gameCard.classList.remove("hide");
+  leaderBtn.style.display = "none";
+  scoreCard.classList.add("hide");
+});
+
+card.addEventListener("click", function (event) {
+  var event = event.target;
+  compareAnswer(event.textContent.trim());
+});
+
+submitBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  var playerInitials = initialsBox.value.trim();
+  var newScore = {
+    player: playerInitials,
+    score: score,
+  };
+  
+  scoreList.push(newScore);
+  saveScore();
+  leaderBoard();
+  inputForm.classList.add("hide");
+  scoreCard.classList.remove("hide");
+});
+
+leaderBtn.addEventListener("click", function (event) {
+  scoreCard.classList.remove("hide");
+  leaderBtn.classList.add("hide");
+  start.classList.add("hide");
+  leaderBoard();
+});
+
+// Event listener for go back button ??
+backBtn.addEventListener("click", function (event) {
+  location.reload();
+});
+
+// Event listener for clear scores button ??
+clearBtn.addEventListener("click", function (event) {
+  scoreList = [];
+  start.classList.add("hide");
+  localStorage.setItem("highScore", JSON.stringify(scoreList));
+  leaderBoard();
+  saveScore();
+});
