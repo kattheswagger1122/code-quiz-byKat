@@ -1,5 +1,5 @@
 // creating an array and passing the number, questions, options, and answers
-var question = [
+var questions = [
     {
     numb: 1,
     question: "What is Katrina's Favorite Bread?",

@@ -1,75 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Awesome Quiz App | CodingNepal</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <!-- FontAweome CDN Link for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/reset.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Code Quiz</title>
 </head>
+
 <body>
-    <!-- start Quiz button -->
-    <div class="start_btn"><button>Start Quiz</button></div>
-    <!-- Info Box -->
-    <div class="info_box">
-        <div class="info-title"><span>Some Rules of this Quiz</span></div>
-        <div class="info-list">
-            <div class="info">1. You will have only <span>15 seconds</span> per each question.</div>
-            <div class="info">2. Once you select your answer, it can't be undone.</div>
-            <div class="info">3. You can't select any option once time goes off.</div>
-            <div class="info">4. You can't exit from the Quiz while you're playing.</div>
-            <div class="info">5. You'll get points on the basis of your correct answers.</div>
-        </div>
-        <div class="buttons">
-            <button class="quit">Exit Quiz</button>
-            <button class="restart">Continue</button>
-        </div>
-    </div>
-    <!-- Quiz Box -->
-    <div class="quiz_box">
-        <header>
-            <div class="title">Awesome Quiz Application</div>
-            <div class="timer">
-                <div class="time_left_txt">Time Left</div>
-                <div class="timer_sec">15</div>
-            </div>
-            <div class="time_line"></div>
+
+  <h1>Coding Quiz Challenge</h1>
+  
+  <div class="start">
+    <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your time by 10 seconds!</p>
+    <button id="beginBtn" type="button" class="btn">Begin Quiz</button><br>
+  </div>
+   
+  <main class="main">
+
+    <!--Quiz window-->
+    <div id="gameCard" class="w3-container hide">
+
+      <h2 class="timer">TIMER: </h2>
+
+      <div id="card1" class="w3-card-4">
+        
+        <header class="w3-container w3-light-grey">
+          <h3 id="question">Question Goes HERE!</h3>
         </header>
-        <section>
-            <div class="que_text">
-                <!-- Here I've inserted question from JavaScript -->
-            </div>
-            <div class="option_list">
-                <!-- Here I've inserted options from JavaScript -->
-            </div>
-        </section>
-        <!-- footer of Quiz Box -->
-        <footer>
-            <div class="total_que">
-                <!-- Here I've inserted Question Count Number from JavaScript -->
-            </div>
-            <button class="next_btn">Next Que</button>
-        </footer>
+
+        <hr style="margin-top:0; border-color:transparent;">
+
+        <div id="multipleChoice" class="w3-container">
+          <div class="questionLine">
+            <label id="mcA"></label>
+          </div><hr>
+
+          <div class="questionLine">
+            <label id="mcB"></label>
+          </div><hr>
+
+          <div class="questionLine">
+            <label id="mcC"></label>
+          </div><hr>
+
+          <div class="questionLine">
+            <label  id="mcD"></label>            
+          </div>
+
+        </div>
+
+        <hr style="margin-top:0; border-color:transparent;">
+
+        <footer id="feedback1" class="w3-block w3-dark-grey">Can you answer all the questions in time?</footer>
+
+      </div>
+      
     </div>
-    <!-- Result Box -->
-    <div class="result_box">
-        <div class="icon">
-            <i class="fas fa-crown"></i>
-        </div>
-        <div class="complete_text">You've completed the Quiz!</div>
-        <div class="score_text">
-            <!-- Here I've inserted Score Result from JavaScript -->
-        </div>
-        <div class="buttons">
-            <button class="restart">Replay Quiz</button>
-            <button class="quit">Quit Quiz</button>
-        </div>
+
+    <button id="leaderBtn" type="button" class="btn">View High Scores</button><br>
+
+    <!--Player input window-->
+    <div id="inputForm" class="w3-container hide">
+
+      <h1>!! GAME OVER !!</h1>
+    
+      <h2>You scored <span id="scoreBtn" class="btn">Score</span> points!</h2>
+        <form>
+          <label for="initialsBox">Enter Your Initials Here:</label><br>
+          <input id="initialsBox" type="text" maxlength="3"><br>
+          <input id="submitBtn" type="submit" class="btn">
+        </form>
+
     </div>
-    <!-- Inside this JavaScript file I've inserted Questions and Options only -->
-    <script src="scriptQuestions.js"></script>
-    <!-- Inside this JavaScript file I've coded all Quiz Codes -->
-    <script src="./script.js"></script>
+
+    <!--High Score window-->
+    <div id="scoreCard" class="w3-container hide">
+
+      <div id="card2" class="w3-card-4">
+        
+        <header class="w3-container w3-light-grey">
+          <h1>Top 10 High Scores</h1>
+        </header>
+
+        <hr style="margin-top:0; border-color:transparent;">
+        <div id="leaderBoard" class="w3-container" style="min-height: 275px"></div>
+  
+        <hr style="margin-top:0; border-color:transparent;">
+        <footer id="feedback2" class="w3-block w3-dark-grey">Thx for Playing</footer>
+      </div>
+
+      <button id="backBtn" type="button" class="btn">Go Back</button>
+      <button id="clearBtn" type="button" class="btn">Clear High Score</button>
+
+    </div>
+    
+  </main>
+
+  <script src="./scriptQuestions.js"></script>
+  <script src="./script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
 </body>
-</html>
+
 </html>
