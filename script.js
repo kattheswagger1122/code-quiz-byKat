@@ -20,7 +20,7 @@ var backBtn = document.querySelector("#backBtn");
 var clearBtn = document.querySelector("#clearBtn");
 var start = document.querySelector(".start");
 
-var timeLeft = questionBank.length * 15;
+var timeLeft = questions.length * 15;
 var q = 0;
 var s = 0;
 var score = 0;
@@ -36,7 +36,7 @@ function timer() {
     timeLeft--;
     timerDisplay.textContent = "TIMER: " + timeLeft;
 
-    if (timeLeft === 0 || q >= questionBank.length) {
+    if (timeLeft === 0 || q >= questions.length) {
       clearInterval(timeInterval);
       gameOver();
     }
@@ -46,12 +46,12 @@ function timer() {
 
 // Displaying questions & answers from questionBank
 function displayQA() {
-  if (q < questionBank.length) {
-    question.textContent = questionBank[q].question;
-    mcA.textContent = questionBank[q].selection[0];
-    mcB.textContent = questionBank[q].selection[1];
-    mcC.textContent = questionBank[q].selection[2];
-    mcD.textContent = questionBank[q].selection[3];
+  if (q < questions.length) {
+    question.textContent = questions[q].question;
+    mcA.textContent = questions[q].selection[0];
+    mcB.textContent = questions[q].selection[1];
+    mcC.textContent = questions[q].selection[2];
+    mcD.textContent = questions[q].selection[3];
   } else {
     gameOver();
   }
@@ -60,11 +60,11 @@ function displayQA() {
 
 // Informing player if chosen answer is right or wrong
 function compareAnswer(event) {
-  if (q >= questionBank.length) {
+  if (q >= questions.length) {
     gameOver();
     clearInterval(timeInterval);
   } else {
-    if (event === questionBank[q].answer) {
+    if (event === questions[q].answer) {
       feedback1.textContent = "You are correct!";
     } else {
       timeLeft -= 10;

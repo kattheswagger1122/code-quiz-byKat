@@ -1,70 +1,60 @@
-// creating an array and passing the number, questions, options, and answers
 var questions = [
+    {   
+        question: "How does a WHILE loop start?",
+        selection: ["while i = 1 to 10", "while (i <= 10; i++)", "while (var i = 0; i = 10; i++)", "while (i <= 10)"],
+        answer: "while (i <= 10)"
+    },
+    {   
+        question: "The external JavaScript file must contain the <script> tag.",
+        selection: ["True", "False", "Maybe", "I don't know"],
+        answer: "False"
+    },
+    {   
+        question: "Inside which HTML element do we put the JavaScript?", 
+        selection: ["<script>", "<js>", "<javascript>", "<JS>"],
+        answer: "<script>"
+    },
     {
-    numb: 1,
-    question: "What is Katrina's Favorite Bread?",
-    answer: "Croissant",
-    options: [
-      "Croissant",
-      "Sourdough",
-      "Pineapple Bread",
-      "Pita"
-    ]
-  },
+        question: "How to write an IF statement in JavaScript?",
+        selection: ["if i = 5", "if (i == 5)", "if i = 5 then", "if i == 5 then"],
+        answer: "if (i == 5) "
+    },
     {
-    numb: 2,
-    question: "What is Kat's Favorite Clothing Brand as of May 2022?",
-    answer: "Theory",
-    options: [
-      "COS",
-      "Theory",
-      "Oak+Fort",
-      "Uniqlo"
-    ]
-  },
+        question: "What is the correct syntax for referring to an external script called 'xxx.js'?",
+        selection: ["<script name='./xxx.js'>", "<script href='./xxx.js'>", "<script scr='./xxx.js'>", "<script ='./xxx.js'>"],
+        answer: "<script scr='./xxx.js'>"
+    },
     {
-    numb: 3,
-    question: "WWhat instrument does Kat play (well lol)?",
-    answer: "flute",
-    options: [
-      "piano",
-      "violin",
-      "recorder",
-      "flute"
-    ]
-  },
+        question: "How can you add a comment in a JavaScript?",
+        selection: ["'This is a comment", "//This is a comment", "<!--This is a comment-->", "<!**This is a comment**>"],
+        answer: "//This is a comment"
+    },
     {
-    numb: 4,
-    question: "What Is Kat's Favorite Music Genre?",
-    answer: "Jpop",
-    options: [
-      "Kpop",
-      "Jpop",
-      "Metal",
-      "Indie"
-    ]
-  },
+        question: "How do you find the number with the highest value of x and y?",
+        selection: ["Math.max(x, y)", "ceil(x, y)", "top(x, y)", "Math.ceil(x, y) "],
+        answer: "Math.max(x, y)"
+    },
     {
-    numb: 5,
-    question: "What is Kat's go-to Boba Order?",
-    answer: "Yakult Green Tea",
-    options: [
-        "Classic Bubble Tea",
-        "Brown Sugar Milk",
-        "Strawberry Green Tea with Lychee Jelly",
-        "Yakult Green Tea"
-    ]
-  },
-  {
-    numb: 6,
-    question: "What is Kat's go-to restaurant in Chinatown NYC?",
-    answer: "Spring Cafe on Canal Street",
-    options: [
-      "Go Go Dim Sum",
-      "The Original Bodai Restaurant",
-      "Spring Cafe on Canal Street",
-      "Happy Veggie Restaurant"
-    ]
-  },
+        question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+        selection: ["if (i != 5)", "if (i <> 5)", "if i =! 5 then", "if i <> 5"],
+        answer: "if (i != 5)"
+    },
+    {
+        question: "How do you create a function in JavaScript?",
+        selection: ["function = myFunction()", "function:myFunction()", "function myFunction()", "$Function()"],
+        answer: "function myFunction()"
+    },
+    {
+        question: "How do you round the number 7.25, to the nearest integer?",
+        selection: ["round(7.25)", "Math.rnd(7.25)", "Math.round(7.25)", "rnd(7.25)"],
+        answer: "Math.round(7.25)"
+    },
+    {
+        question: "JavaScript is the same as Java?",
+        selection: ["True", "False", "Maybe", "I don't know"],
+        answer: "False"
+    }
+
 ];
+
 
