@@ -65,10 +65,10 @@ function compareAnswer(event) {
     clearInterval(timeInterval);
   } else {
     if (event === questions[q].answer) {
-      feedback1.textContent = "You are correct!";
+      feedback1.textContent = "Correct!!!";
     } else {
       timeLeft -= 10;
-      feedback1.textContent = "You are Wrong!";
+      feedback1.textContent = "Try Again Later!!!";
     }
     score = timeLeft;
     q++;
