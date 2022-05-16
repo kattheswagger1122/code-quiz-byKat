@@ -1,5 +1,5 @@
 :root {
-    background-color:rgb(215, 145, 228);
+    background-color: rgb(222, 146, 249);
   }
   
   * {
@@ -55,9 +55,6 @@
     margin: 8px;
   }
   
-  /************************/
-  /*        Classes       */
-  /************************/
   
   .container {
     width: 100vw;
@@ -65,7 +62,7 @@
     display: flex;
     justify-content: center;
     align-items: start;
-    max-width: 80rem;
+    max-width: 1,280px;
     margin: 0 auto;
   }
   
@@ -79,12 +76,7 @@
   
   .w3-container {
     padding: 0;
-    -webkit-border-radius: 16px;
   }
-  
-  /************************/
-  /*         IDs          */
-  /************************/
   
   #card1, #card2 {
     background-color: rgb(192, 132, 142);
@@ -93,22 +85,16 @@
     margin-bottom: 32px;
     padding: auto;
     width: 60%;
-    -webkit-border-radius: 1rem;
   }
   
   #initialsBox {
-    background-color: rgb(213, 138, 150);
+    background-color: rgb(252, 252, 252);
     border-color: purple;
     height: 48px;
     font-size: 32px;
     text-align: center;
-    width: 9rem;
-    -webkit-border-radius: 16px;
+    width: 144px;
   }
-  
-  /************************/
-  /*       Buttons        */
-  /************************/
   
   .btn {
     background: lightpink;
@@ -118,13 +104,12 @@
     margin: 8px;
     padding: 8px;
     text-decoration: none;
-    -webkit-border-radius: 16px;
   }
   
   .btn:hover {
     cursor: pointer;
     box-shadow: 0 8px 8px 0 rgb(163, 112, 199);
-    transform: translateY(0.1rem);
+    transform: translateY(1.6px);
     transition: transform 150ms;
   }
   

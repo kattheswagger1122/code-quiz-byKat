@@ -1,4 +1,4 @@
-// Global variables, questions are stored in questions.js
+// variables
 var beginQuiz = document.querySelector("#beginBtn");
 var leaderBtn = document.querySelector("#leaderBtn");
 var timerDisplay = document.querySelector(".timer");
@@ -28,9 +28,8 @@ var scoreList = [];
 var timeInterval;
 
 getScore();
-// -----------------------------------------------------------------------------
 
-// Running the timer for the quiz
+// timers 
 function timer() {
   timeInterval = setInterval(function () {
     timeLeft--;
@@ -42,9 +41,8 @@ function timer() {
     }
   }, 1000);
 }
-// -----------------------------------------------------------------------------
 
-// Displaying questions & answers from questionBank
+// Displaying questions & answers from questions
 function displayQA() {
   if (q < questions.length) {
     question.textContent = questions[q].question;
@@ -56,9 +54,8 @@ function displayQA() {
     gameOver();
   }
 }
-// -----------------------------------------------------------------------------
 
-// Informing player if chosen answer is right or wrong
+// function fot timer subtracting 
 function compareAnswer(event) {
   if (q >= questions.length) {
     gameOver();
@@ -75,22 +72,19 @@ function compareAnswer(event) {
     displayQA();
   }
 }
-// -----------------------------------------------------------------------------
 
-// Getting scores from local storage
+// local storage 
 function getScore() {
   var storedScore = JSON.parse(localStorage.getItem("highScore"));
   if (storedScore !== null) {
     scoreList = storedScore;
   }
-}
-// -----------------------------------------------------------------------------
+} 
 
-// Saving the scores to local storage
+// save scores 
 function saveScore() {
   localStorage.setItem("highScore", JSON.stringify(scoreList));
 }
-// -----------------------------------------------------------------------------
 
 // Displaying & hiding page items based on Game Over
 function gameOver() {
@@ -102,7 +96,6 @@ function gameOver() {
   leaderBtn.classList.add("hide");
   leaderBoard();
 }
-// -----------------------------------------------------------------------------
 
 // Keeping track of top 10 leaders from local storage w/ loop
 function leaderBoard() {
@@ -126,7 +119,6 @@ function leaderBoard() {
     newDiv.appendChild(newLabel);
   }
 }
-// -----------------------------------------------------------------------------
 
 // Adding player initials to leader board
 function addToLeaderBoard() {
@@ -134,7 +126,6 @@ function addToLeaderBoard() {
   leaderBoardDiv.setAttribute("id", "playerInitials");
   document.getElementById("leaderBoard").appendChild(leaderBoardDiv);
 }
-// -----------------------------------------------------------------------------
 
 // Removing player initials from leader board
 function removeFromLeaderBoard() {
@@ -144,7 +135,6 @@ function removeFromLeaderBoard() {
   } else {
   }
 }
-// -----------------------------------------------------------------------------
 
 // Event listeners
 beginQuiz.addEventListener("click", function (event) {
@@ -183,12 +173,12 @@ leaderBtn.addEventListener("click", function (event) {
   leaderBoard();
 });
 
-// Event listener for go back button ??
+// Event listener for go back button
 backBtn.addEventListener("click", function (event) {
   location.reload();
 });
 
-// Event listener for clear scores button ??
+// Event listener for clear scores button
 clearBtn.addEventListener("click", function (event) {
   scoreList = [];
   start.classList.add("hide");
