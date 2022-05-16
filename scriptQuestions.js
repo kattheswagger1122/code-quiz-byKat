@@ -1,111 +1,111 @@
 var questions = [
     {   
-        question: "What is Katrina's Favorite Bread?",
+        question: "Which of the following is true about typeof operator in JavaScript",
         selection: [
-        "Croissant",
-        "Sourdough",
-        "Pineapple Bread",
-        "Pita"
+        "document.location='http://www.newlocation.com';",
+        "browser.location='http://www.newlocation.com';",
+        " navigator.location='http://www.newlocation.com';",
+        "window.location='http://www.newlocation.com';"
         ],
-        answer: "Croissant"
+        answer: "window.location='http://www.newlocation.com';"
     },
     {   
-        question: "What is Kat's Favorite Clothing Brand as of May 2022?",
+        question: " Which built-in method returns the character at the specified index?",
         selection: [
-        "COS",
-        "Theory",
-        "Oak+Fort",
-        "Uniqlo"
+        "characterAt()",
+        "TgetCharAt()",
+        "charAt()",
+        "None of the above."
        ],
-        answer: "Theory"
+        answer: "charAt()"
     },
     {   
-        question: "What instrument does Kat play (well lol)?", 
+        question: "Which built-in method returns the calling string value converted to upper case?", 
         selection: [
-        "piano",
-        "violin",
-        "recorder",
-        "flute"
+        "toUpperCase()",
+        "toUpper()",
+        "changeCase(case)",
+        "None of the above."
         ],
-        answer: "flute"
+        answer: "toUpperCase()"
     },
     {
-        question: "What Is Kat's Favorite Music Genre?",
+        question: "Which of the following function of Number object returns a string value version of the current number?",
         selection: [
-        "Kpop",
-        "Jpop",
-        "Metal",
-        "Indie"],
-        answer: "Jpop"
+        "toString()",
+        "toFixed()",
+        "toLocaleString()",
+        "toPrecision()"],
+        answer: "toString()"
     },
     {
-        question: "What is Kat's go-to Boba Order?",
+        question: "Which of the following function of String object returns the characters in a string beginning at the specified location through the specified number of characters?",
         selection: [ 
-        "Classic Bubble Tea",
-        "Brown Sugar Milk",
-        "Strawberry Green Tea with Lychee Jelly",
-        "Yakult Green Tea"
+        "slice()",
+        "split()",
+        "substr()",
+        "search()"
         ],
-        answer: "Yakult Green Tea"
+        answer: "substr()"
     },
     {
-        question: "What is Kat's go-to restaurant in Chinatown NYC?",
+        question: "Which of the following function of String object returns the primitive value of the specified object.",
         selection: [
-        "Go Go Dim Sum",
-        "The Original Bodai Restaurant",
-        "Spring Cafe on Canal Street",
-        "Happy Veggie Restaurant"
+        "toUpperCase()",
+        "toString()",
+        "toLocaleUpperCase()",
+        "valueOf()"
         ],
-        answer: "Spring Cafe on Canal Street"
+        answer: "valueOf()"
     },
     {
-        question: "Kat's favorite dish?",
+        question: "Which of the following function of String object causes a string to be displayed as a subscript, as if it were in a <sub> tag?",
         selection: [
-        "Pasta (ANY TYPE)", 
-        "Ramen", 
-        "Mandy's Salad with Sesame Dressing", 
-        "All Of The Above"
+        "sup()", 
+        "small()", 
+        "strike()", 
+        "sub()"
         ],
-        answer: "All Of The Above"
+        answer: "sub()"
     },
     {
-        question: "Kat's Favorite Ghibli Animation Film",
+        question: "Which of the following function of Array object adds one or more elements to the end of an array and returns the new length of the array?",
         selection: [
-        "Spirited Away", 
-        "Ponyo", 
-        "Howl's Moving Castle", 
-        "Castle in the Sky"],
-        answer: "Howl's Moving Castle"
+        "pop()", 
+        "push()", 
+        "join()", 
+        "map()"],
+        answer: "push()"
     },
     {
-        question: "How Many Languages Does Kat Know Fluently",
+        question: "10 - Which of the following function of Array object reverses the order of the elements of an array?",
         selection: [
-        "3", 
-        "4", 
-        "5", 
-        "2"
+        "reverse()", 
+        "push()", 
+        "reduce()", 
+        "reduceRight()"
         ],
-        answer: "4"
+        answer: "reverse()"
     },
     {
-        question: "What is Kat's Chinese Zodiac Sign",
+        question: "TArrays in JavaScript can be used to store:---",
         selection: [
-        "Rabbit", 
-        "Tiger", 
-        "Ox", 
-        "Dragon"
+        "numbers and strings",
+        "others Arrays",
+        "booleances", 
+        "all of the above"
         ],
-        answer: "Tiger"
+        answer: "all of the above"
     },
     {
-        question: "What is Kat's Spirit Animal",
+        question: "The condition in an if/else statement is enclosed within:---",
         selection: [
-        "Dolphin", 
-        "Cheeta", 
-        "Koala", 
-        "Blobfish"
+        "quotes",
+        "Curly brackets",
+        "parentheses", 
+        "square brackets"
         ],
-        answer: "Koala"
+        answer: "parentheses"
     }
 
 ];
